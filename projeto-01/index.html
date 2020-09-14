@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Projeto 01 - Matador de monstros</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	
+		<div class="panel scores">
+			<div>
+				<h2>
+					Jogador
+				</h2>
+				<p>
+					{{ player.life }}
+				</p>
+			</div>
+	
+			<div>
+				<h2>
+					Monstro
+				</h2>
+				<p>
+					{{ monster.life }}
+				</p>
+			</div>
+		</div>
+		
+		<div class="panel result" v-if="player.life == 0 || monster.life == 0">
+			<div v-if="player.life == 0 && monster.life == 0">
+				Empate
+			</div>
+			<div v-else-if="monster.life == 0">
+				Vitória
+			</div>
+			<div v-else-if="player.life == 0">
+				Derrota
+			</div>
+		</div>
+	
+		<div class="panel buttons">
+			<button v-if="!gameRunning" @click="startGame()">
+				Iniciar jogo
+			</button>
+			<template v-else>
+				<button @click="playerAtack()">
+					Ataque
+				</button>
+				<button @click="playerSpecialAtack()">
+					Ataque especial
+				</button>
+				<button @click="playerHeal()">
+					Curar
+				</button>
+				<button @click="stopGame()">
+					Desistir
+				</button>
+			</template>
+		</div>
+	
+		<div class="panel logs">
+			<ul>
+				<li v-for="log in logs">
+					{{ log.texto }}
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+	<script src="app.js"></script>
+</body>
+</html>
+
