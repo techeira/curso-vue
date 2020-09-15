@@ -10,21 +10,27 @@
 	<div id="app">
 	
 		<div class="panel scores">
-			<div>
-				<h2>
+			<div class="score">
+				<h1>
 					Jogador
-				</h2>
+				</h1>
+				<div class="life-bar">
+					<div class="life" :class="{danger: player.life<20}" :style="{width: monster.life + '%'}"></div>
+				</div>
 				<p>
-					{{ player.life }}
+					{{ player.life }} %
 				</p>
 			</div>
 	
-			<div>
-				<h2>
+			<div class="score">
+				<h1>
 					Monstro
-				</h2>
+				</h1>
+				<div class="life-bar">
+					<div class="life" :class="{danger: monster.life<20}" :style="{width: monster.life + '%'}"></div>
+				</div>
 				<p>
-					{{ monster.life }}
+					{{ monster.life }} %
 				</p>
 			</div>
 		</div>
