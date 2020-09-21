@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>
+        {{ contador }}
+    </p>
+    <button v-on:click="incrementarContador(5, $event)">Incrementar</button>
+    <p v-on:mousemove="atualizarPosicaoMouse">
+        Mouse: [{{ mouseX }}, {{ mouseY }}]
+    </p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            mouseX: 0,
+            mouseY: 0
+        },
+        methods: {
+            incrementarContador(passo, e){
+                console.log(passo, e)
+                this.contador += passo;
+            },
+            atualizarPosicaoMouse(e){
+                this.mouseX = e.clientX
+                this.mouseY = e.clientY
+            }
+        }
+    })
+</script>

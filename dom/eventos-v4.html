@@ -1,0 +1,46 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>
+        {{ contador }}
+    </p>
+    <button v-on:click="incrementarContador(5, $event)">Incrementar</button>
+    <p v-on:mousemove="atualizarPosicaoMouse">
+        Mouse: [{{ mouseX }}, {{ mouseY }}]
+        <span v-on:mousemove="pararPropagacao">Parar (com função)</span>
+        <span v-on:mousemove.stop="">Parar (com evento)</span>
+    </p>
+    <a href="http://google.com.br">Navega</a>
+    <a v-on:click="naoNavegar" href="http://google.com.br">Não navega (com função)</a>
+    <a v-on:click.prevent="imprimirNaoNavegar" href="http://google.com.br">Não navega (com evento)</a>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contador: 0,
+            mouseX: 0,
+            mouseY: 0
+        },
+        methods: {
+            incrementarContador(passo, e){
+                console.log(passo, e)
+                this.contador += passo;
+            },
+            atualizarPosicaoMouse(e){
+                this.mouseX = e.clientX
+                this.mouseY = e.clientY
+            },
+            pararPropagacao(e){
+                e.stopPropagation()
+            },
+            naoNavegar(e){
+                e.preventDefault()
+            },
+            imprimirNaoNavegar(){
+                console.log("não vai navegar")
+            }
+        }
+    })
+</script>
